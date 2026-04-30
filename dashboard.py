@@ -238,9 +238,14 @@ def main() -> None:
             ]
 
         st.dataframe(
-            overview_df.style.format({"percentage": "{:.2f}", "total_count": "{:.0f}", "count": "{:.0f}"}),
+            overview_df,
             use_container_width=True,
             hide_index=True,
+            column_config={
+                "total_count": st.column_config.NumberColumn("total_count", format="%d"),
+                "count": st.column_config.NumberColumn("count", format="%d"),
+                "percentage": st.column_config.NumberColumn("percentage", format="%.2f"),
+            },
         )
 
     with response_tab:
